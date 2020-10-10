@@ -8,11 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
-ui->
+//ui->
 
  //   for ( ; ; )
   //  {
-        QString x = QString("Strart");
+        QString x = QString("Start");
         QString y = QString("1");
 
         ui->textEdit->setText(x+"\n");

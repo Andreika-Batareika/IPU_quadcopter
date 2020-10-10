@@ -1,6 +1,6 @@
 #ifndef MATHMODEL_H
 #define MATHMODEL_H
-
+#include <string.h>
 
 class mathmodel
 {
@@ -14,6 +14,7 @@ public:
        void analiz_vector(float  X_came_for_analiz[],float t_come[]);
        float* U(float t);
        float* f(float t);
+
 
 
 

@@ -28,7 +28,23 @@ mathmodel_quatro::mathmodel_quatro(float X_come[], float mass){
      b=0;
      l=0;
  //  TMath_model.__init__(X_come)
-float    X[] = X_come; //X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
+   X[] = X_come; //X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
+
+
+
+
+
+
+
+
+  k1=self.l/self.Ix;
+  k2=self.l/self.Iy;
+  k3=self.l/self.Iz;
+  C1=(self.Iy-self.Iz)/self.Ix;
+  C2=-self.Ir/self.Iz;
+  C3=(self.Iz-self.Ix)/self.Iy;
+  C4=-self.Ir/self.Iy;
+  C5=(self.Ix-self.Iy)/self.Iz;
 }
 void mathmodel_quatro::DU(float dt)
  {
@@ -43,14 +59,7 @@ float** mathmodel_quatro::B(float t){
    return B_out;
 }
  f(float t){
- float  k1=self.l/self.Ix;
-  float k2=self.l/self.Iy;
-  float k3=self.l/self.Iz;
-  float C1=(self.Iy-self.Iz)/self.Ix;
- float  C2=-self.Ir/self.Iz;
- float  C3=(self.Iz-self.Ix)/self.Iy;
-  float C4=-self.Ir/self.Iy;
-  float C5=(self.Ix-self.Iy)/self.Iz;
+
   float Ux=cos(self.X[11])*sin(self.X[10])*cos(X[9])+sin(self.X[11])*sin(self.X[9]);
  float  Uy=(cos(self.X[11])*sin(self.X[10])*sin(self.X[9])+sin(self.X[11])*cos(self.X[9]));
    self.X[8];

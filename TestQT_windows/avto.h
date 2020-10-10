@@ -1,6 +1,6 @@
 #ifndef AVTO_H
 #define AVTO_H
-
+#include <string.h>
 
 class avto
 {

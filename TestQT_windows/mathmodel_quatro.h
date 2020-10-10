@@ -36,7 +36,23 @@ public:
   void  U(float t);
 
  void   U_signal();
+ float    X[] ;//X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
 
+
+
+
+
+
+
+
+ float  k1;
+  float k2;
+  float k3;
+  float C1;
+ float  C2;
+ float  C3;
+  float C4;
+  float C5;
 };
 
 #endif // MATHMODEL_QUATRO_H

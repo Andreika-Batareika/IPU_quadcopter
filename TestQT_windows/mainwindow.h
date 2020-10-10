@@ -53,24 +53,22 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-      float X,Y,Z, t_TVV,t_TVPS;
-        std::string type_SK;
-       bool TVV,TVPS,TKT_GSK,TKT_SSK;
-   void start();
-   void restart();
-    void exit();
-    void writefile(std::string file_name, float arr[]);
-    void readfile(std::string file_name, float arr[]);
-     void update_parametrs(bool arrbool[], float dt, std::string filename);
-     void view_control(int number_view);
-     void add_waypoint(bool TVPS ,bool TVV, bool GSK, bool SSK, int X1,int X2, int X3, float dt, float tk  );
-    void  delete_maneuver(int number_point);
-    void add_maneuver(int number_point, std::string maneuver);
-    void first_point_for_model();
-   void  finish_point_for_model();
-    void modeling_waypoint();
-    void set_start_position();
-    void set_finish_position();
+
+   void start(); // процедура старта программы
+   void restart();// процедура перезапуска программы
+    void exit();// процедура завершения программы
+    void writefile(std::string file_name, std::string arr[]); // запись в файл file_name в строчку через пробел все значения arr[]
+    void readfile(std::string file_name, std::string arr[]); // считывание из файла file_name в значения arr
+     void update_parametrs(bool arrbool[], float dt, std::string filename); // процедура обновление/ задание параметров объектра
+     void view_control(int number_view); // выбор котнроля : ручной/автопилот и др, выбирается путем смены активрованной ячейки комбобокса
+     void add_waypoint(bool TVPS ,bool TVV, bool GSK, bool SSK, float X1,float X2, float X3 ); // добавление маршрутной точки с описанными ранее  параметрами
+    void  delete_maneuver(int number_point);// удаление маневра с текущим порядковым номером
+    void add_maneuver(int number_point, std::string maneuver); // добавление маневра в список маневров с порядковым номером  number_point и типом маневра   maneuver
+    void first_point_for_model( std::string type_SK, float X1,float X2, float X3 ); // создание  первой точки для модлиррования
+   void  finish_point_for_model( std::string type_SK, float X1,float X2, float X3);// создание конечной точки для модлиррования
+    void modeling_waypoint(); // моделирование  полета по двум точкам
+    void set_start_position(); // задание параметров состояния объекта в начальной точке моделирования
+    void set_finish_position();// задание параметров состояния объекта в конечной точке моделирования
 
 
 };

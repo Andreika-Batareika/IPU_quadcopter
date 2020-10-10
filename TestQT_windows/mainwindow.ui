@@ -216,7 +216,7 @@
     <item>
      <widget class="QTabWidget" name="horizontalTabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="horizontalTabWidgetPage1">
        <attribute name="title">
@@ -376,7 +376,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -587,7 +587,7 @@
                      <property name="geometry">
                       <rect>
                        <x>0</x>
-                       <y>-7</y>
+                       <y>0</y>
                        <width>811</width>
                        <height>180</height>
                       </rect>

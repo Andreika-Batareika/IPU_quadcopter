@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     avtoquatro.cpp \
     mathmodel.cpp \
     mathmodel_quatro.cpp \
-    user.cpp
+    user.cpp \
+    tpoint.cpp
 
 HEADERS  += mainwindow.h \
     avto.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h \
     avtoquatro.h \
     mathmodel.h \
     mathmodel_quatro.h \
-    user.h
+    user.h \
+    tpoint.h
 
 FORMS    += mainwindow.ui

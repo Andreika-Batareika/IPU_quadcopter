@@ -1,8 +1,11 @@
 #include "user.h"
 
-user::user()
+user::user (mathmodel com_math_model, avto come_system_avtomatic, Tpoint* come_waypoints)
 {
-
+   self.math_model=com_math_model;
+     self.system_avtomatic=come_system_avtomatic;
+      self.operation_mode="avto";
+      self.waypoints= come_waypoints;
 }
 
 void user::Get_way_point(float vector[])

@@ -1,7 +1,7 @@
 #ifndef AVTOQUATRO_H
 #define AVTOQUATRO_H
 #include <avto.h>
-
+#include <string.h>
 class avtoquatro: avto
 {
 public:
