@@ -31,10 +31,11 @@ public:
     //
     // 5---4
 
-        float f_Forse(float P,float D,float error, float spin);
+        float f_Forse(float P,float D,float error, float spin); //функция PID
 
-        float f_Pitch(float pitch,float target_pitch);
-           float  f_Roll(float roll,float target_roll);
+        float f_Pitch(float pitch,float target_pitch);// функция получения разницы сил от номинала для необходимого угла тангажа
+
+           float  f_Roll(float roll,float target_roll);// функция получения разницы сил от номинала для необходимого угла крена
            float F_throttle_p(float read_pitch,float mission_pitch);
 
 

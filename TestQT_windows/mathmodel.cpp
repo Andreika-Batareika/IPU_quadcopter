@@ -13,18 +13,22 @@ void mathmodel::write_result()
 }
 
 
-
+//  правые части
 float* mathmodel::rightpart(float t)
 {
 
     dX=self.f(t,self.X,self.U(t));
     return dX;
 }
+
+// интегрирование
 void mathmodel::DU(self,t):
     self.t0=self.t1;
     self.t1=t;
     dt=self.t1-self.t0
     self.X=self.X+self.rightpart(t)*dt
+
+            //анализ вектора
 void mathmodel::analiz_vector(X_came_for_analiz,t_come):
     self.X_for_analiz=X_came_for_analiz
     self.time_bort=t_come
@@ -36,9 +40,10 @@ void mathmodel::analiz_vector(X_came_for_analiz,t_come):
 
 
 
-float* mathmodel::f(float t):
+/*float* mathmodel::f(float t):
     F_out=
     return F_out
-float* mathmodel::U(self,t):
+*/
+            float* mathmodel::U(self,t):
     U_out=[]
     return U_out

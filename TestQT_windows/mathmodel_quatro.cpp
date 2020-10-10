@@ -46,11 +46,17 @@ mathmodel_quatro::mathmodel_quatro(float X_come[], float mass){
   C4=-self.Ir/self.Iy;
   C5=(self.Ix-self.Iy)/self.Iz;
 }
+
+
+
+// интегратор
 void mathmodel_quatro::DU(float dt)
  {
 
    self.X=self.X+self.rightpart(t)*dt;
  }
+
+/*
 float** mathmodel_quatro::B(float t){
    -(cos(self.X[11])*sin(self.X[10])*cos(self.X[9])+sin(self.X[11])*sin(self.X[9]))/self.mass;
    -(cos(self.X[11])*sin(self.X[10])*sin(self.X[9])+sin(self.X[11])*cos(self.X[9]))/self.mass;
@@ -58,7 +64,14 @@ float** mathmodel_quatro::B(float t){
    B_out=np.matrix();
    return B_out;
 }
- f(float t){
+
+
+*/
+
+
+
+     float* mathmodel_quatro::rightpart(float t)// правые части диференциальных уравнений модели
+{
 
   float Ux=cos(self.X[11])*sin(self.X[10])*cos(X[9])+sin(self.X[11])*sin(self.X[9]);
  float  Uy=(cos(self.X[11])*sin(self.X[10])*sin(self.X[9])+sin(self.X[11])*cos(self.X[9]));
@@ -77,10 +90,9 @@ float** mathmodel_quatro::B(float t){
    F_out=np.matrix();
    return F_out;
  }
-float* mathmodel_quatro::U(float t){
-   U_out=F_thrttle;
-   return U_out;
-}
+
+
+     //вычисления  ...
 float* mathmodel_quatro::U_signal(){
    self.u1=self.d*(self.w1*self.w1+self.w2*self.w2+self.w3*self.w3+self.w4*self.w4);
    self.u2=self.d*(self.w1*self.w1-self.w2*self.w2+self.w3*self.w3-self.w4*self.w4);
@@ -89,3 +101,5 @@ float* mathmodel_quatro::U_signal(){
    self.Q=self.w1+self.w2+self.w3+self.w4;
 }
 
+float* mathmodel_quatro::U(float t)// функция расчета управляющей силы
+{}

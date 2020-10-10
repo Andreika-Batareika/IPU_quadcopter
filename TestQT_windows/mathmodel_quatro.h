@@ -31,13 +31,14 @@ public:
      float      b;
      float      l;
     mathmodel_quatro(float X_come[], float mass);
-  void   DU(float dt);
-  void  B(float t);
-  void  U(float t);
-
+  void   DU(float t);
+ // void  B(float t);
+ // void  U(float t);// функция выи
+     float* rightpart(float t); // правые части диференциальных уравнений модели
  void   U_signal();
  float    X[] ;//X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
 
+ float* U(float t);// функция расчета управляющей силы
 
 
 

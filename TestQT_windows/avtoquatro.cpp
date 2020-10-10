@@ -18,7 +18,15 @@ float avtoquatro::f_Pitch(float pitch,float target_pitch) // функция по
    {
 
    }
-   float avtoquatro::F_throttle_p(float read_pitch,float mission_pitch)//
+
+
+
+   //можно опустить
+
+
+
+ /*
+    float avtoquatro::F_throttle_p(float read_pitch,float mission_pitch)//
    {
 
    }
@@ -30,8 +38,10 @@ float  avtoquatro::F_throttle_r(float read_roll,float mission_roll)
 
 }
 
+*/
+// можно опустить
 
-float  avtoquatro::F_throttle_H()
+float  avtoquatro::F_throttle_H() // функция для вычисления мощности  двигатеоей для поддержания заданной высоты
 {
 
 }
