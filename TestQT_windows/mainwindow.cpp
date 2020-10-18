@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <string.h>
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -23,9 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
-
-
-
 
 MainWindow::~MainWindow()
 {
@@ -56,7 +55,7 @@ void MainWindow::on_pushButton_5_clicked()
 //кнопка создания маршрутной точки
 void MainWindow::on_pushButton_4_clicked()
 {
-   add_waypoint(lineEdit.,);
+   add_waypoint(true,true,true,true,ui->lineEdit_3->text().toFloat(),ui->lineEdit_2->text().toFloat(),ui->lineEdit->text().toFloat());
 }
 
 
@@ -88,7 +87,7 @@ void MainWindow::on_pushButton_12_clicked()
 //добавление маевра после выполнение кнотрольной точки
 void MainWindow::on_pushButton_8_clicked()
 {
-add_maneuver();
+add_maneuver(ui->number_point->currentIndex(),ui->types_of_maneuvres->currentText().toStdString());
 }
 
 // начальная точка для моделирования маршрута
@@ -170,9 +169,15 @@ void MainWindow::writefile(std::string file_name, float arr[])
 }
 
 //обновление параметров объекта
-void MainWindow::update_parametrs(bool arrbool[], float dt, std::string filename)
+void MainWindow::update_parametrs(std::string typeaudopilot,std::string typemodel, bool arrbool[], float dt, std::string filename)
 {
-
+if (typeaudopilot=="avtopilot_for_quatrocopter"){
+    WAvto = new avtoquatro();
+}
+if (typemodel=="model_for_quatrocopter"){
+    WMathmodel  = new mathmodel_quatro();
+}
+WUser=new user::user(WMathmodel,WAvto,);
 }
 // смена вида управления
 void MainWindow::view_control(int number_view)
@@ -180,7 +185,27 @@ void MainWindow::view_control(int number_view)
 
 }
 // добавление точки маршрута
-void MainWindow::add_waypoint(bool TVPS ,bool TVV, bool GSK, bool SSK, int X1,int X2, int X3, float dt, float tk  )
+void MainWindow::add_waypoint(bool TVPS ,bool TVV, bool GSK, bool SSK, float X1,float X2, float X3  )
 {
 
 }
+
+void MainWindow::on_Match_model_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_type_avtopilot_currentIndexChanged(int index)
+{switch (index) {
+    case 0:
+
+        break;
+    default:
+        break;
+    }
+
+}
+void MainWindow::add_maneuver(int number_point, std::string maneuver)
+{
+
+}// добавление маневра в список маневров с порядковым номером  number_point и типом маневра   maneuver

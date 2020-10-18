@@ -1,6 +1,6 @@
 #include "user.h"
 
-user::user (mathmodel com_math_model, avto come_system_avtomatic, Tpoint* come_waypoints)
+user::user (mathmodel com_math_model, avto come_system_avtomatic, std::vector<Tpoint> come_waypoints)
 {
    self.math_model=com_math_model;
      self.system_avtomatic=come_system_avtomatic;
@@ -20,7 +20,7 @@ void user::Get_way_point(float vector[])
  }
 
  // функция двигателей зависящааая от поставленной задачи (он же  и вызвает автопилот)
- float* user::ttarget(self)
+ float* user::target(self)
  {
 
  }

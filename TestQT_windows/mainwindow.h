@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <user.h>
 namespace Ui {
 class MainWindow;
 }
@@ -50,16 +50,25 @@ private slots:
 
     void on_pushButton_10_clicked();
 
+    void on_Match_model_currentIndexChanged(const QString &arg1);
+
+    void on_Match_model_currentIndexChanged(int index);
+
+    void on_type_avtopilot_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
+    avto WAvto;
+    mathmodel WMathmodel;
+    user WUser;
 
    void start(); // процедура старта программы
    void restart();// процедура перезапуска программы
     void exit();// процедура завершения программы
-    void writefile(std::string file_name, std::string arr[]); // запись в файл file_name в строчку через пробел все значения arr[]
+    void writefile(std::string file_name, float arr[]); // запись в файл file_name в строчку через пробел все значения arr[]
     void readfile(std::string file_name, std::string arr[]); // считывание из файла file_name в значения arr
-     void update_parametrs(bool arrbool[], float dt, std::string filename); // процедура обновление/ задание параметров объектра
+     void update_parametrs(std::string typeaudopilot,std::string typemodel, bool arrbool[], float dt, std::string filename); // процедура обновление/ задание параметров объектра
      void view_control(int number_view); // выбор котнроля : ручной/автопилот и др, выбирается путем смены активрованной ячейки комбобокса
      void add_waypoint(bool TVPS ,bool TVV, bool GSK, bool SSK, float X1,float X2, float X3 ); // добавление маршрутной точки с описанными ранее  параметрами
     void  delete_maneuver(int number_point);// удаление маневра с текущим порядковым номером

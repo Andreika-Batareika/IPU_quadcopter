@@ -18,7 +18,7 @@ public:
 
 
 
-}
+};
 
 #endif // MATHMODEL_H
 

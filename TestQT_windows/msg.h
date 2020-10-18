@@ -15,7 +15,7 @@ class MSG
 public:
     MSG();
 
-    void readport();
+    void readport(int umber_port);
 
     void writeport();
 

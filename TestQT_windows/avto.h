@@ -5,15 +5,15 @@
 class avto
 {
 public:
-    avto();
+    avto(float inmass);
 
        float G=9.8;
        float mass;
 
       float mission_ttarget[5] ={0,0,1,0,0};//режимы [арминг, взлет, автозависание,разворот, движение]
-        float vector_status[] ;
+        float vector_status[20] ;
   float dt;
- float throttle[]={0,0,0,0}; // левый передний, правый передний,левый задний, правый задний
+ float throttle[4]={0,0,0,0}; // левый передний, правый передний,левый задний, правый задний
 // 7---6
 //
 // 5---4
