@@ -1,10 +1,10 @@
 #include "mathmodel.h"
 
-mathmodel::mathmodel()
+mathmodel::mathmodel(float  X_come[])
 {
 
-    self.X = X_come;
-        self.X_for_analiz=self.X;
+    X = X_come;
+    X_for_analiz=X;
 }
 
 void mathmodel::write_result()
@@ -17,24 +17,32 @@ void mathmodel::write_result()
 float* mathmodel::rightpart(float t)
 {
 
-    dX=self.f(t,self.X,self.U(t));
+    float dX[8]={0,0,0,0,0,0,0,0};
     return dX;
 }
 
 // интегрирование
-void mathmodel::DU(self,t){
-    self.t0=self.t1;
-    self.t1=t;
-    dt=self.t1-self.t0;
-    self.X=self.X+self.rightpart(t)*dt;
+float* mathmodel::DU(float t){
+    t0=t1;
+    t1=t;
+    float dt=t1-t0;
+    float *dx;
+    dx=rightpart(t);
+
+    for(int i=0;i<8;i++){
+
+        X[i]=X[i]+dx[i]*dt;
+    }
+
+   return X;
 }
             //анализ вектора
-void mathmodel::analiz_vector(X_came_for_analiz,t_come)
+float mathmodel::analiz_vector(float X_came_for_analiz[], float t_come)
 {
-    self.X_for_analiz=X_came_for_analiz;
-    self.time_bort=t_come;
-    DU(self.time_bort);
-    dx_analiz=X_came_for_analiz-self.X;
+    X_for_analiz=X_came_for_analiz;
+    float time_bort=t_come;
+    DU(time_bort);
+    float dx_analiz=X_came_for_analiz-X;
     return dx_analiz;
 }
 
@@ -45,7 +53,8 @@ void mathmodel::analiz_vector(X_came_for_analiz,t_come)
     F_out=
     return F_out
 */
-            float* mathmodel::U(self,t){
-    U_out=[];
+float* mathmodel::U(float t)
+{
+    float U_out[8]={0,0,0,0,0,0,0,0};
     return U_out;
 }

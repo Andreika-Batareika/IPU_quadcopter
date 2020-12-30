@@ -1,27 +1,28 @@
 #include "avtoquatro.h"
+#include <avto.h>
 
-avtoquatro::avtoquatro(float inmass)
+avtoquatro::avtoquatro(float inmass):avtopilot (inmass)
 {
-    self.P_pitch=0;
-        self.D_pitch=0;
-        self.P_roll=0;
-        self.D_roll=0;
-        self.mass=0;
-        self.G=9.8*self.mass;
-        self.mission_ttarget={0,0,1,0,0};//режимы [арминг, взлет, автозависание,разворот, движение]
+    P_pitch=0;
+    D_pitch=0;
+    P_roll=0;
+    D_roll=0;
+    mass=0;
+    G=9.8*mass;
 
-        self.mission_roll=0;
-        self.error_pitch=0;
-        self.error_roll=0;
-        self.error_roll_previous=0;
-        self.error_pitch_previous=0;
-        self.mission_pitch=0;
-        self.throttle_mission_avto_z=1500;
-        self.throttle_mission_r=0;
-        self.vector_status={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+        mission_roll=0;
+        error_pitch=0;
+        error_roll=0;
+        error_roll_previous=0;
+        error_pitch_previous=0;
+        mission_pitch=0;
+        throttle_mission_avto_z=1500;
+        throttle_mission_r=0;
+
     //    self.vector_status=[[0],0,0,0,0,0,0,0,0,0,0,0,0];//d X Y Z vx vy vz health pitch roll wx wy wz
-        self.dt=0.1;
-        self.throttle={0,0,0,0}// левый передний, правый передний,левый задний, правый задний
+        dt=0.1;
+     //   throttle={0,0,0,0}// левый передний, правый передний,левый задний, правый задний
 
 }
 

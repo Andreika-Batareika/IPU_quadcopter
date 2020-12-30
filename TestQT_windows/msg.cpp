@@ -9,7 +9,7 @@
 
    }
 
-   MSG::readport( int number_port)
+  std::string MSG::readport( int number_port)
            {
    const char *nameport[]   = {"a",  "b", NULL};
 
@@ -83,10 +83,11 @@
 
            close(serial_port);
 
+           return read_buf;
            }
 
 
-   MSG::writeport()
+  void MSG::writeport(int number_port)
    {
 
    }

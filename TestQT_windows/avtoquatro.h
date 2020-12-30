@@ -2,7 +2,7 @@
 #define AVTOQUATRO_H
 #include <avto.h>
 #include <string.h>
-class avtoquatro: avto
+class avtoquatro: public avtopilot
 {
 public:
     avtoquatro(float inmass);
@@ -14,11 +14,10 @@ public:
         //    float mass;
         //    float G;
         //    float mission_ttarget=[0,0,1,0,0]#режимы [арминг, взлет, автозависание,разворот, движение]
-
-           float mission_roll;
-           float error_pitch;
-             float error_roll;
-             float error_roll_previous;
+            float mission_roll;
+            float error_pitch;
+            float error_roll;
+            float error_roll_previous;
             float error_pitch_previous;
             float mission_pitch;
             float throttle_mission_avto_z;
@@ -31,25 +30,14 @@ public:
     //
     // 5---4
 
-        float f_Forse(float P,float D,float error, float spin); //функция PID
-
-        float f_Pitch(float pitch,float target_pitch);// функция получения разницы сил от номинала для необходимого угла тангажа
-
-           float  f_Roll(float roll,float target_roll);// функция получения разницы сил от номинала для необходимого угла крена
-           float F_throttle_p(float read_pitch,float mission_pitch);
-
-
-
-        float  F_throttle_r(float read_roll,float mission_roll);
-
-
-       float  F_throttle_H();
-
-        void mission_stabilizacia(float p,float tp,float r,float tr);
-
-
-
-        float* F_avto(float vector1[]);
+            float f_Forse(float P,float D,float error, float spin); //функция PID
+            float f_Pitch(float pitch,float target_pitch);// функция получения разницы сил от номинала для необходимого угла тангажа
+            float  f_Roll(float roll,float target_roll);// функция получения разницы сил от номинала для необходимого угла крена
+            float F_throttle_p(float read_pitch,float mission_pitch);
+            float  F_throttle_r(float read_roll,float mission_roll);
+            float  F_throttle_H();
+            void mission_stabilizacia(float p,float tp,float r,float tr);
+            float* F_avto(float vector1[]);
 
 
 };

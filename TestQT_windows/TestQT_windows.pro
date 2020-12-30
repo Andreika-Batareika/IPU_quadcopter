@@ -13,6 +13,18 @@ TARGET = TestQT_windows
 TEMPLATE = app
 
 
+
+
+
+CONFIG += no_keywords # Python redefines some qt keywords
+INCLUDEPATH += /usr/include/python3.5m
+LIBS += -lpython3.5m
+
+
+
+
+
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     avto.cpp \
@@ -34,3 +46,6 @@ HEADERS  += mainwindow.h \
     tpoint.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    test1.py

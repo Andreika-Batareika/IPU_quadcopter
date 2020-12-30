@@ -35,8 +35,8 @@ public:
  // void  B(float t);
  // void  U(float t);// функция выи
      float* rightpart(float t); // правые части диференциальных уравнений модели
- void   U_signal();
- float    X[] ;//X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
+float*   U_signal();
+ float    * X ;//X Y Z Vx Vy Vz speed_heating speed_pitch speed_roll  heating pitch roll
 
  float* U(float t);// функция расчета управляющей силы
 
