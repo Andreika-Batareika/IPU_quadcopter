@@ -5,7 +5,7 @@
 #-------------------------------------------------
 QT += serialport
 QT       += core gui
-QT += webkit
+QT += widgets
 
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
@@ -17,8 +17,8 @@ TEMPLATE = app
 
 
 CONFIG += no_keywords # Python redefines some qt keywords
-INCLUDEPATH += /usr/include/python3.5m
-LIBS += -lpython3.5m
+#INCLUDEPATH += /usr/include/python3.5m
+#LIBS += -lpython3.5m
 
 
 
@@ -28,7 +28,6 @@ LIBS += -lpython3.5m
 SOURCES += main.cpp\
         mainwindow.cpp \
     avto.cpp \
-    msg.cpp \
     avtoquatro.cpp \
     mathmodel.cpp \
     mathmodel_quatro.cpp \
@@ -37,7 +36,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     avto.h \
-    msg.h \
     usb.h \
     avtoquatro.h \
     mathmodel.h \
@@ -47,5 +45,5 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-DISTFILES += \
-    test1.py
+#DISTFILES += \
+#    test1.py

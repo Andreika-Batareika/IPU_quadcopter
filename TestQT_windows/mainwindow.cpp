@@ -6,10 +6,11 @@
 #include <mathmodel.h>
 #include "avto.h"
 
+#include <QTextStream>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),  ui(new Ui::MainWindow)
 {
-    system("python3 /home/fastil/build-TestQt_windows_Desctop-Debug/TestQT_windows/test1.py");
 
     ui->setupUi(this);
     QString x = QString("Start");
@@ -17,12 +18,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textEdit->setText(x+"\n");
 
 
-
+    QString str = "123.2 234.2   23123  432";
+    QTextStream stream(&str);
+    QList<float> array;
+    while (!stream.atEnd()) {
+        float number;
+        stream >> number;
+        array.append(number);
+    }
 
 
 
 
 }
+
 
 MainWindow::~MainWindow()
 {

@@ -5,7 +5,6 @@
 #include <user.h>
 #include <mathmodel.h>
 #include <avto.h>
-#include <Python.h>
 namespace Ui {
 class MainWindow;
 }
