@@ -220,7 +220,7 @@
     <item>
      <widget class="QTabWidget" name="horizontalTabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="horizontalTabWidgetPage1">
        <attribute name="title">
@@ -460,12 +460,12 @@
                    <widget class="QComboBox" name="type_avtopilot">
                     <item>
                      <property name="text">
-                      <string>Самолет</string>
+                      <string>Квадрокоптер</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
-                      <string>Квадрокоптер</string>
+                      <string>Самолет</string>
                      </property>
                     </item>
                     <item>
@@ -615,6 +615,9 @@
                        <widget class="QCheckBox" name="checkBox_4">
                         <property name="text">
                          <string>работа камер</string>
+                        </property>
+                        <property name="checked">
+                         <bool>false</bool>
                         </property>
                        </widget>
                       </item>
@@ -1303,6 +1306,13 @@
         <widget class="QPushButton" name="pushButton">
          <property name="text">
           <string>Завершение работы</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_17">
+         <property name="text">
+          <string>Настройка USB</string>
          </property>
         </widget>
        </item>

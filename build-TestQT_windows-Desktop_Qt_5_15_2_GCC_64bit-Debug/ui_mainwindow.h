@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+//#include <QtWebKitWidgets/QWebView>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
@@ -52,6 +53,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *widget;
     QHBoxLayout *horizontalLayout_7;
+    //QWebView *webView;
     QWidget *q8;
     QVBoxLayout *verticalLayout_6;
     QScrollArea *scrollArea;
@@ -279,6 +281,7 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton;
+    QPushButton *pushButton_17;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -350,6 +353,7 @@ public:
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+
 
         horizontalLayout->addWidget(widget);
 
@@ -826,6 +830,7 @@ public:
 
         checkBox_4 = new QCheckBox(scrollAreaWidgetContents_4);
         checkBox_4->setObjectName(QString::fromUtf8("checkBox_4"));
+        checkBox_4->setChecked(false);
 
         verticalLayout_14->addWidget(checkBox_4);
 
@@ -1446,6 +1451,11 @@ public:
 
         horizontalLayout_2->addWidget(pushButton);
 
+        pushButton_17 = new QPushButton(horizontalGroupBox);
+        pushButton_17->setObjectName(QString::fromUtf8("pushButton_17"));
+
+        horizontalLayout_2->addWidget(pushButton_17);
+
 
         verticalLayout->addWidget(horizontalGroupBox);
 
@@ -1454,7 +1464,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        horizontalTabWidget->setCurrentIndex(0);
+        horizontalTabWidget->setCurrentIndex(1);
         tabWidget->setCurrentIndex(2);
         types_of_maneuvres->setCurrentIndex(0);
 
@@ -1497,8 +1507,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\320\227\320\275\320\260\321\207\320\265\320\275\320\270\321\217 \320\264\320\260\321\202\321\207\320\270\320\272\320\276\320\262", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "\320\236\321\210\320\270\320\261\320\272\320\270", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\320\275\320\276\320\262\320\270\321\202\321\214 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", nullptr));
-        type_avtopilot->setItemText(0, QCoreApplication::translate("MainWindow", "\320\241\320\260\320\274\320\276\320\273\320\265\321\202", nullptr));
-        type_avtopilot->setItemText(1, QCoreApplication::translate("MainWindow", "\320\232\320\262\320\260\320\264\321\200\320\276\320\272\320\276\320\277\321\202\320\265\321\200", nullptr));
+        type_avtopilot->setItemText(0, QCoreApplication::translate("MainWindow", "\320\232\320\262\320\260\320\264\321\200\320\276\320\272\320\276\320\277\321\202\320\265\321\200", nullptr));
+        type_avtopilot->setItemText(1, QCoreApplication::translate("MainWindow", "\320\241\320\260\320\274\320\276\320\273\320\265\321\202", nullptr));
         type_avtopilot->setItemText(2, QCoreApplication::translate("MainWindow", "\320\237\320\273\320\260\321\202\321\204\320\276\321\200\320\274\320\260 \320\275\320\260 \320\264\320\262\321\203\321\205 \320\272\320\276\320\273\320\265\321\201\320\260\321\205", nullptr));
         type_avtopilot->setItemText(3, QCoreApplication::translate("MainWindow", "\320\220\320\262\321\202\320\276\320\274\320\276\320\261\320\270\320\273\321\214", nullptr));
 
@@ -1597,6 +1607,7 @@ public:
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "\320\237\320\265\321\200\320\265\320\267\320\260\320\277\321\203\321\201\320\272", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\262\320\265\321\200\321\210\320\265\320\275\320\270\320\265 \321\200\320\260\320\261\320\276\321\202\321\213", nullptr));
+        pushButton_17->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\260 USB", nullptr));
     } // retranslateUi
 
 };

@@ -3,10 +3,10 @@
 #include <string.h>
 #include <iostream>
 
-class Tpoint
+struct Tpoint
 {
 public:
-    Tpoint(float inX1, float inX2, float inX3);
+  //  Tpoint(float inX1, float inX2, float inX3);
 bool completed;// флаг выполнения точки
 bool started; //флаг начала к выполнению движения к точке
 float min_dR ; // минимальное значение при котором считается что точка выполнена по требованию достижеия расстояния до ней

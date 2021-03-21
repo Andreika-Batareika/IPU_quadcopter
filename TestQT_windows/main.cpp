@@ -3,7 +3,7 @@
 #include "ui_mainwindow.h"
 #include "msg.h"
 
-
+#include "serialportreader.h"
 
 
 #include <ctime> // подключаем clock

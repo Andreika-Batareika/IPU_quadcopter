@@ -6,7 +6,6 @@
 QT += serialport
 QT       += core gui
 QT += widgets
-
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 TARGET = TestQT_windows
@@ -31,11 +30,15 @@ SOURCES += main.cpp\
     avtoquatro.cpp \
     mathmodel.cpp \
     mathmodel_quatro.cpp \
+    serialportreader.cpp \
+    settingsdialog.cpp \
     user.cpp \
     tpoint.cpp
 
 HEADERS  += mainwindow.h \
     avto.h \
+    serialportreader.h \
+    settingsdialog.h \
     usb.h \
     avtoquatro.h \
     mathmodel.h \
@@ -43,7 +46,14 @@ HEADERS  += mainwindow.h \
     user.h \
     tpoint.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    settingsdialog.ui
+
+RESOURCES += \
+    terminal.qrc
+
+target.path = $$[QT_INSTALL_EXAMPLES]/serialport/terminal
+INSTALLS += target
 
 #DISTFILES += \
 #    test1.py
