@@ -34,5 +34,5 @@ void user::Get_way_point(float vector[])
  // основная процедурая, выполняемая в каждом проходе основной программы
  void user::Change_mode(float vector[],float inTime)
  {
-
+     if(operation_mode=="avto") system_avtomatic->F_avto(vector);
  }

@@ -22,7 +22,7 @@ public:
             float mission_pitch;
             float throttle_mission_avto_z;
             float throttle_mission_r;
-            float vector_status[20] ={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            float* vector_status;
        //   vector_status=[[0],0,0,0,0,0,0,0,0,0,0,0,0]#d X Y Z vx vy vz health pitch roll wx wy wz
       //     dt;
             float throttle[4]={0,0,0,0};// левый передний, правый передний,левый задний, правый задний

@@ -10,6 +10,11 @@
 #include "avto.h"
 #include "serialportreader.h"
 
+#include<thread>
+
+
+
+#include <unistd.h>
 
 #include <QMessageBox>
 #include <QTextStream>
@@ -108,8 +113,26 @@ void MainWindow::writeData(const QByteArray &data)
 //! [7]
 void MainWindow::readData()
 {
+    int sizeUSB=4;
+  //  sleep(5);
     const QByteArray data = serialPortReader->readAll();
-    readText(data);
+
+    QString string;
+    string= QString(data);
+    QStringList stringList =string.split("\n");
+    QTextStream stream(&stringList[stringList.size()-2]);
+    readText(stringList[stringList.size()-2]);
+    QList<float> array;
+    int i=0;
+    vectorReadFromUSB.resize(20);
+    while (i<sizeUSB) {
+        float number;
+        stream >> number;
+        vectorReadFromUSB[i]=number;
+       // array.append(number);
+        i++;
+    }
+
 }
 
 
@@ -269,6 +292,8 @@ void MainWindow::start()
            WUser = new user(WMathmodel,WAvto,arrayPointsForStart);
 
    }
+   std::thread func_thread(mainProgramm);
+
 
     // тип автопилота
     //маршрутные точки
@@ -411,10 +436,23 @@ void MainWindow:: set_finish_position()
 
 void MainWindow::readText(QString comeText){
 
-        ui->textEdit->setText(comeText);
+        ui->textEdit->append(comeText);
 }
 // насйтройка usb
 void MainWindow::on_pushButton_17_clicked()
 {
     m_settings->exec();
+}
+
+
+
+
+void MainWindow::mainProgramm(){
+
+    while(true){
+
+    float comevector[20];
+    readText("Работа");
+    }
+  //  this->WUser->Change_mode(comevector,);
 }

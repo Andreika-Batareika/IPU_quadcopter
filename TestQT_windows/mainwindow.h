@@ -87,7 +87,9 @@ private:
    void readData();
    void getData();
    bool openSerialPort();
-    std::vector<Tpoint>arrayPointsForStart; //точки маршрута
+   std::vector<Tpoint>arrayPointsForStart; //точки маршрута
+   void mainProgramm();
+
 
 public:
     void readText(QString readText);
@@ -97,6 +99,7 @@ public:
    avtopilot* WAvto =nullptr;
    mathmodel* WMathmodel =nullptr;
    user* WUser;
+   std::vector<float> vectorReadFromUSB;
    //QSerialPort* serialPort;
    SettingsDialog *m_settings = nullptr;
    QSerialPort* serialPortReader = nullptr;
