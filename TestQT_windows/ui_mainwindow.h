@@ -10,6 +10,10 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+//#include <QtWebKitWidgets/QWebView.h>
+//#include <QtWebKitWidgets/QWebView>
+#include <QtWebView>
+#include <QtWidgets/QtWidgets>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
@@ -50,8 +54,9 @@ public:
     QLabel *label_19;
     QGroupBox *groupBox;
     QHBoxLayout *horizontalLayout;
-    QWidget *widget_2;
+    QWidget *widget;
     QHBoxLayout *horizontalLayout_7;
+    //QWebView *webView;
     QWidget *q8;
     QVBoxLayout *verticalLayout_6;
     QScrollArea *scrollArea;
@@ -85,7 +90,7 @@ public:
     QTabWidget *horizontalTabWidget;
     QWidget *horizontalTabWidgetPage1;
     QHBoxLayout *horizontalLayout_3;
-    QWidget *widget;
+    QWidget *widget1;
     QVBoxLayout *verticalLayout_7;
     QScrollArea *scrollArea_2;
     QWidget *scrollAreaWidgetContents_3;
@@ -94,9 +99,9 @@ public:
     QRadioButton *radioButton_4;
     QRadioButton *radioButton_3;
     QRadioButton *radioButton;
-    QWidget *widget1;
-    QVBoxLayout *verticalLayout_2;
     QWidget *widget2;
+    QVBoxLayout *verticalLayout_2;
+    QWidget *widget3;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_8;
     QLineEdit *lineEdit_8;
@@ -345,14 +350,15 @@ public:
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        widget_2 = new QWidget(groupBox);
-        widget_2->setObjectName(QString::fromUtf8("widget_2"));
-        horizontalLayout_7 = new QHBoxLayout(widget_2);
+        widget = new QWidget(groupBox);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        horizontalLayout_7 = new QHBoxLayout(widget);
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
 
-        horizontalLayout->addWidget(widget_2);
+
+        horizontalLayout->addWidget(widget);
 
         q8 = new QWidget(groupBox);
         q8->setObjectName(QString::fromUtf8("q8"));
@@ -502,13 +508,13 @@ public:
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        widget = new QWidget(horizontalTabWidgetPage1);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        verticalLayout_7 = new QVBoxLayout(widget);
+        widget1 = new QWidget(horizontalTabWidgetPage1);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        verticalLayout_7 = new QVBoxLayout(widget1);
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
-        scrollArea_2 = new QScrollArea(widget);
+        scrollArea_2 = new QScrollArea(widget1);
         scrollArea_2->setObjectName(QString::fromUtf8("scrollArea_2"));
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
@@ -547,49 +553,49 @@ public:
         verticalLayout_7->addWidget(scrollArea_2);
 
 
-        horizontalLayout_3->addWidget(widget);
+        horizontalLayout_3->addWidget(widget1);
 
-        widget1 = new QWidget(horizontalTabWidgetPage1);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        widget2 = new QWidget(horizontalTabWidgetPage1);
+        widget2->setObjectName(QString::fromUtf8("widget2"));
+        verticalLayout_2 = new QVBoxLayout(widget2);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        widget2 = new QWidget(widget1);
-        widget2->setObjectName(QString::fromUtf8("widget2"));
-        horizontalLayout_9 = new QHBoxLayout(widget2);
+        widget3 = new QWidget(widget2);
+        widget3->setObjectName(QString::fromUtf8("widget3"));
+        horizontalLayout_9 = new QHBoxLayout(widget3);
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
-        label_8 = new QLabel(widget2);
+        label_8 = new QLabel(widget3);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
         horizontalLayout_9->addWidget(label_8);
 
-        lineEdit_8 = new QLineEdit(widget2);
+        lineEdit_8 = new QLineEdit(widget3);
         lineEdit_8->setObjectName(QString::fromUtf8("lineEdit_8"));
 
         horizontalLayout_9->addWidget(lineEdit_8);
 
-        label_9 = new QLabel(widget2);
+        label_9 = new QLabel(widget3);
         label_9->setObjectName(QString::fromUtf8("label_9"));
 
         horizontalLayout_9->addWidget(label_9);
 
-        lineEdit_9 = new QLineEdit(widget2);
+        lineEdit_9 = new QLineEdit(widget3);
         lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
 
         horizontalLayout_9->addWidget(lineEdit_9);
 
-        pushButton_4 = new QPushButton(widget2);
+        pushButton_4 = new QPushButton(widget3);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
 
         horizontalLayout_9->addWidget(pushButton_4);
 
 
-        verticalLayout_2->addWidget(widget2);
+        verticalLayout_2->addWidget(widget3);
 
-        horizontalGroupBox_2 = new QGroupBox(widget1);
+        horizontalGroupBox_2 = new QGroupBox(widget2);
         horizontalGroupBox_2->setObjectName(QString::fromUtf8("horizontalGroupBox_2"));
         horizontalGroupBox_2->setEnabled(true);
         horizontalLayout_5 = new QHBoxLayout(horizontalGroupBox_2);
@@ -630,7 +636,7 @@ public:
         verticalLayout_2->addWidget(horizontalGroupBox_2);
 
 
-        horizontalLayout_3->addWidget(widget1);
+        horizontalLayout_3->addWidget(widget2);
 
         horizontalTabWidget->addTab(horizontalTabWidgetPage1, QString());
         tab = new QWidget();
@@ -1461,8 +1467,8 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        horizontalTabWidget->setCurrentIndex(2);
-        tabWidget->setCurrentIndex(3);
+        horizontalTabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
         types_of_maneuvres->setCurrentIndex(0);
 
 

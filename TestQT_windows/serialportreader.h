@@ -63,24 +63,23 @@ QT_BEGIN_NAMESPACE
 QT_END_NAMESPACE
 
 class MainWindow;
-class SerialPortReader : public QObject
-{
-    Q_OBJECT
+class SerialPortReader : public QObject {
+  Q_OBJECT
 
 public:
-    explicit SerialPortReader(QSerialPort *serialPort, QObject *parent = nullptr);
+  explicit SerialPortReader(QSerialPort *serialPort, QObject *parent = nullptr);
 
 public Q_SLOTS:
-    void handleReadyRead();
-    void handleTimeout();
-    void handleError(QSerialPort::SerialPortError error);
+  void handleReadyRead();
+  void handleTimeout();
+  void handleError(QSerialPort::SerialPortError error);
 
 public:
-    QSerialPort *m_serialPort = nullptr;
-    QByteArray m_readData;
-    QTextStream m_standardOutput;
-    QTimer m_timer;
-    MainWindow *mainWindow;
+  QSerialPort *m_serialPort = nullptr;
+  QByteArray m_readData;
+  QTextStream m_standardOutput;
+  QTimer m_timer;
+  MainWindow *mainWindow;
 };
 
 #endif // SERIALPORTREADER_H

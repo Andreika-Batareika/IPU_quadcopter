@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QString>
+#include <QThread>
 #include <avto.h>
 #include <mathmodel.h>
 #include <user.h>
@@ -104,20 +105,23 @@ private:
   void getData();
   bool openSerialPort();
   std::vector<Tpoint> arrayPointsForStart; //точки маршрута
-  void mainProgramm();
 
 public:
-  void readText(QString readText);
+  // QThread t;
+  void readText(QString readText, Ui::MainWindow *ui2);
   Ui::MainWindow *ui;
   void setVectorToString();
   void setStringToVector(QString inString);
   avtopilot *WAvto = nullptr;
-  mathmodel *WMathmodel = nullptr;
-  user *WUser;
-  std::vector<float> vectorReadFromUSB;
+  // mathmodel *WMathmodel = nullptr;
+  // user *WUser;
+
   // QSerialPort* serialPort;
   SettingsDialog *m_settings = nullptr;
   QSerialPort *serialPortReader = nullptr;
+  QThread t;
+public Q_SLOTS:
+  void mainProgramm(QString message);
 };
 
 #endif // MAINWINDOW_H

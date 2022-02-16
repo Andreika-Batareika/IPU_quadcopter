@@ -51,72 +51,66 @@
 #include "serialportreader.h"
 #include "mainwindow.h"
 
-
 //#include <QCoreApplication>
 
-SerialPortReader::SerialPortReader(QSerialPort *serialPort, QObject *parent) :
-    QObject(parent),
-    m_serialPort(serialPort)//,
+SerialPortReader::SerialPortReader(QSerialPort *serialPort, QObject *parent)
+    : QObject(parent), m_serialPort(serialPort) //,
 //  m_standardOutput(stdout)
 {
-    connect(m_serialPort, &QSerialPort::readyRead, this, &SerialPortReader::handleReadyRead);
-    connect(m_serialPort, &QSerialPort::errorOccurred, this, &SerialPortReader::handleError);
-    connect(&m_timer, &QTimer::timeout, this, &SerialPortReader::handleTimeout);
+  connect(m_serialPort, &QSerialPort::readyRead, this,
+          &SerialPortReader::handleReadyRead);
+  connect(m_serialPort, &QSerialPort::errorOccurred, this,
+          &SerialPortReader::handleError);
+  connect(&m_timer, &QTimer::timeout, this, &SerialPortReader::handleTimeout);
 
+  m_timer.start(5000);
+}
+
+void SerialPortReader::handleReadyRead() {
+  // m_readData.append(m_serialPort->readBufferSize());
+
+  // if (m_serialPort->canReadLine())
+  m_readData.append(m_serialPort->readLine());
+  //  m_readData.append(m_serialPort->readLine());
+  //  m_readData.append(m_serialPort->readLine());
+  //  m_readData.append(m_serialPort->readLine());
+
+  QString string;
+  string = QString(m_readData);
+  // if (mainwindow->trueBool==true) {string+="  : 1";}
+  mainWindow->readText(string, mainWindow->ui);
+
+  //    m_standardOutput << m_readData<< "\n";
+  m_readData.clear();
+  //    m_standardOutput << m_serialPort->readLine()<< "\n";
+
+  if (!m_timer.isActive())
     m_timer.start(5000);
 }
 
-void SerialPortReader::handleReadyRead()
-{
-    //m_readData.append(m_serialPort->readBufferSize());
-
-    // if (m_serialPort->canReadLine())
-    m_readData.append(m_serialPort->readLine());
-    //  m_readData.append(m_serialPort->readLine());
-    //  m_readData.append(m_serialPort->readLine());
-    //  m_readData.append(m_serialPort->readLine());
-
-    QString string;
-    string= QString(m_readData);
-   // if (mainwindow->trueBool==true) {string+="  : 1";}
-   mainWindow->readText(string);
-
-
-    //    m_standardOutput << m_readData<< "\n";
-    m_readData.clear();
-    //    m_standardOutput << m_serialPort->readLine()<< "\n";
-
-
-    if (!m_timer.isActive())
-        m_timer.start(5000);
+void SerialPortReader::handleTimeout() {
+  if (m_readData.isEmpty()) {
+    m_standardOutput << QObject::tr("No data was currently available "
+                                    "for reading from port %1")
+                            .arg(m_serialPort->portName())
+                     << "\n";
+  } else {
+    m_standardOutput << QObject::tr("Data successfully received from port %1")
+                            .arg(m_serialPort->portName())
+                     << "\n";
+    m_standardOutput << m_readData << "\n";
+  }
+  //  QCoreApplication::quit();
 }
 
-void SerialPortReader::handleTimeout()
-{
-    if (m_readData.isEmpty()) {
-        m_standardOutput << QObject::tr("No data was currently available "
-                                        "for reading from port %1")
-                                .arg(m_serialPort->portName())
-                         << "\n";
-    } else {
-        m_standardOutput << QObject::tr("Data successfully received from port %1")
-                                .arg(m_serialPort->portName())
-                         << "\n";
-        m_standardOutput << m_readData<< "\n";
-
-
-    }
-    //  QCoreApplication::quit();
-}
-
-void SerialPortReader::handleError(QSerialPort::SerialPortError serialPortError)
-{
-    if (serialPortError == QSerialPort::ReadError) {
-        m_standardOutput << QObject::tr("An I/O error occurred while reading "
-                                        "the data from port %1, error: %2")
-                                .arg(m_serialPort->portName())
-                                .arg(m_serialPort->errorString())
-                         << "\n";
-        //      QCoreApplication::exit(1);
-    }
+void SerialPortReader::handleError(
+    QSerialPort::SerialPortError serialPortError) {
+  if (serialPortError == QSerialPort::ReadError) {
+    m_standardOutput << QObject::tr("An I/O error occurred while reading "
+                                    "the data from port %1, error: %2")
+                            .arg(m_serialPort->portName())
+                            .arg(m_serialPort->errorString())
+                     << "\n";
+    //      QCoreApplication::exit(1);
+  }
 }

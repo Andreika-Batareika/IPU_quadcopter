@@ -6,6 +6,12 @@
 class avtoquatro : public avtopilot {
 public:
   avtoquatro(float inmass);
+  float G = 9.8;
+  float mass;
+
+  std::vector<int> mission_ttarget = {
+      0, 0, 1, 0, 0}; //режимы [арминг, взлет, автозависание,разворот, движение]
+  float dt;
 
   float P_pitch;
   float D_pitch;
@@ -44,7 +50,7 @@ public:
   float F_throttle_r(float read_roll, float mission_roll);
   float F_throttle_H();
   void mission_stabilizacia(float p, float tp, float r, float tr);
-  std::vector<float> F_avto(std::vector<float> vector1);
+  std::vector<float> F_avto(std::vector<float> vector1) override;
 };
 
 #endif // AVTOQUATRO_H

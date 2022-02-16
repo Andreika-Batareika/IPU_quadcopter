@@ -1,23 +1,21 @@
 #include "mainwindow.h"
-#include <QApplication>
-#include "ui_mainwindow.h"
 #include "msg.h"
+#include "ui_mainwindow.h"
+#include <QApplication>
 
 #include "serialportreader.h"
 
+#include <mutex>
+#include <thread>
 
 #include <ctime> // подключаем clock
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
 
-    MainWindow w;
-    w.show();
+  MainWindow w;
 
-    return a.exec();
+  w.show();
 
-
-
-
+  return a.exec();
 }

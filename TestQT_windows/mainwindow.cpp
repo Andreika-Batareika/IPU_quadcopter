@@ -9,8 +9,8 @@
 #include <string.h>
 #include <user.h>
 
-#include <mutex>
-#include <thread>
+#include <QMutex>
+//#include <thread>
 
 #include <unistd.h>
 
@@ -18,21 +18,37 @@
 #include <QString>
 #include <QTextStream>
 
-std::mutex mtx;
+#include <QDebug>
 
+#include <QThread>
+
+mathmodel *WMathmodel = nullptr;
+user *WUser;
+QRecursiveMutex mtx;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow),
-      serialPortReader(new QSerialPort(this)), m_settings(new SettingsDialog) {
+      m_settings(new SettingsDialog), serialPortReader(new QSerialPort(this)) {
+
+  WUser = new user(this);
   m_settings->exec();
   ui->setupUi(this);
-
+  ;
   QString x = QString("Start");
   QString y = QString("1");
   ui->textEdit->setText(x + "\n");
+  // WUser->mwThis = this;
 
   // connect(serialPortReader, &QSerialPort::ge, this, &MainWindow::writeData);
   connect(serialPortReader, &QSerialPort::readyRead, this,
           &MainWindow::readData);
+
+  connect(&t, &QThread::started, WUser, &user::MainProgramm);
+  connect(WUser, &user::messageChanged, this, &MainWindow::mainProgramm);
+  connect(this, &MainWindow::destroyed, &t, &QThread::terminate);
+
+  // коннект для передачи данных из первого объекта в первом потоке, ко второму
+  // объекту во втором потоке
+  WUser->moveToThread(&t);
 
   /*
 
@@ -60,14 +76,16 @@ bool MainWindow::openSerialPort() {
   serialPortReader->setStopBits(p.stopBits);
   serialPortReader->setFlowControl(p.flowControl);
   if (serialPortReader->open(QIODevice::ReadWrite)) {
-
+    mtx.lock();
     readText(tr("Connected to %1 : %2, %3, %4, %5, %6")
                  .arg(p.name)
                  .arg(p.stringBaudRate)
                  .arg(p.stringDataBits)
                  .arg(p.stringParity)
                  .arg(p.stringStopBits)
-                 .arg(p.stringFlowControl));
+                 .arg(p.stringFlowControl),
+             this->ui);
+    mtx.unlock();
     QMessageBox messageBox;
     messageBox.information(this, "USB найден",
                            tr("Connected to %1 : %2, %3, %4, %5, %6")
@@ -80,8 +98,9 @@ bool MainWindow::openSerialPort() {
     return true;
 
   } else {
-
-    readText(tr("Error %1").arg(serialPortReader->errorString()));
+    mtx.lock();
+    readText(tr("Error %1").arg(serialPortReader->errorString()), this->ui);
+    mtx.unlock();
     QMessageBox messageBox;
     messageBox.critical(this, "Error",
                         tr("Error %1").arg(serialPortReader->errorString()));
@@ -97,32 +116,37 @@ void MainWindow::writeData(const QByteArray &data) {
 //! [7]
 void MainWindow::readData() {
   int sizeUSB = 4;
-  //  sleep(5);
   const QByteArray data = serialPortReader->readAll();
 
   QString string;
   string = QString(data);
   QStringList stringList = string.split("\n");
   QTextStream stream(&stringList[stringList.size() - 2]);
-  readText(stringList[stringList.size() - 2]);
+  mtx.lock();
+  readText(stringList[stringList.size() - 1], this->ui);
+  mtx.unlock();
   QList<float> array;
   int i = 0;
-
-  vectorReadFromUSB.resize(20);
+  qDebug() << 2;
+  mtx.lock();
+  mtx.unlock();
   while (i < sizeUSB) {
     float number;
     stream >> number;
+    mtx.lock();
     vectorReadFromUSB[i] = number;
+    mtx.unlock();
     // array.append(number);
     i++;
   }
-  mtx.lock();
-  this->WUser->system_avtomatic->vector_status = vectorReadFromUSB;
-  ;
-  mtx.unlock();
+
+  // this->WUser->system_avtomatic->vector_status = vectorReadFromUSB;
 }
 
-MainWindow::~MainWindow() { delete ui; }
+MainWindow::~MainWindow() {
+  t.terminate();
+  delete ui;
+}
 //кнопка рестарта
 void MainWindow::on_pushButton_3_clicked() { restart(); }
 
@@ -132,7 +156,7 @@ void MainWindow::on_pushButton_2_clicked() { start(); }
 void MainWindow::on_pushButton_clicked() { exit(); }
 //кнопка обновления параметров
 void MainWindow::on_pushButton_5_clicked() {
-  std::vector<bool> arrBool;
+  std::vector<bool> arrBool(6);
   arrBool[0] = ui->checkBox->isChecked();
   arrBool[1] = ui->checkBox_2->isChecked();
   arrBool[2] = ui->checkBox_3->isChecked();
@@ -225,11 +249,15 @@ void MainWindow::start() {
       QMessageBox messageBox;
       messageBox.critical(0, "Ошибка", "Автопилот не выбран !");
     } else {
-      WUser = new user(WMathmodel, WAvto, arrayPointsForStart);
-      std::thread func_thread(&MainWindow::mainProgramm, this);
-      func_thread.detach();
+      // WUser = new user(WMathmodel, WAvto, arrayPointsForStart);
     }
   }
+
+  // WUser = new user(nullptr, nullptr, arrayPointsForStart);
+  //  t = std::thread(&MainWindow::mainProgramm, this);
+  // t = std::thread([&]() { WUser->mainProgramm(this); });
+  WUser->system_avtomatic = WAvto;
+  t.start();
 
   // тип автопилота
   //маршрутные точки
@@ -283,13 +311,13 @@ void MainWindow::exit() {
 void MainWindow::update_parametrs(QString typeaudopilot, QString typemodel,
                                   std::vector<bool> arrbool, float dt,
                                   QString filename) {
-  std::vector<float> boolArr; // = arrbool;
-  readText(QString::number(boolArr[0]));
-  readText(QString::number(boolArr[1]));
-  readText(QString::number(boolArr[2]));
-  readText(QString::number(boolArr[3]));
-  readText(QString::number(boolArr[4]));
-  readText(QString::number(boolArr[5]));
+  std::vector<float> boolArr(6); // = arrbool;
+  readText(QString::number(boolArr[0]), this->ui);
+  readText(QString::number(boolArr[1]), this->ui);
+  readText(QString::number(boolArr[2]), this->ui);
+  readText(QString::number(boolArr[3]), this->ui);
+  readText(QString::number(boolArr[4]), this->ui);
+  readText(QString::number(boolArr[5]), this->ui);
 
   if (typeaudopilot == "Квадрокоптер") {
     WAvto = new avtoquatro(0);
@@ -342,16 +370,31 @@ void MainWindow::set_start_position() {}
 
 void MainWindow::set_finish_position() {}
 
-void MainWindow::readText(QString comeText) { ui->textEdit->append(comeText); }
+void MainWindow::readText(QString comeText, Ui::MainWindow *ui2) {
+  // mtx.lock();
+  ui2->textEdit->setText(comeText);
+
+  // mtx.unlock();
+
+  // qDebug() << 1;
+}
 // насйтройка usb
 void MainWindow::on_pushButton_17_clicked() { m_settings->exec(); }
 
-void MainWindow::mainProgramm() {
+void MainWindow::mainProgramm(QString message) {
+  int i = 0;
+  // while (true) {
+  i++;
+  i++;
+  i++;
+  i++;
+  i++;
+  i++;
+  // mtx.lock();
+  readText(message, this->ui);
+  // mtx.unlock();
 
-  while (true) {
-
-    float comevector[20];
-    readText("Работа");
-  }
+  // this->ui->textEdit->setText(QString::number(i));
+  //}
   //  this->WUser->Change_mode(comevector,);
 }

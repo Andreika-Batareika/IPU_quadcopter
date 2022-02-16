@@ -6,11 +6,14 @@
 QT += serialport
 QT       += core gui
 QT += widgets
+#QT +=  webkitwidgets
+ #QT += webkit
+ QT += webview
+
 greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 TARGET = TestQT_windows
 TEMPLATE = app
-
 
 
 

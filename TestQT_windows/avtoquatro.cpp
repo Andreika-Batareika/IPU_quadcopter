@@ -1,7 +1,7 @@
 #include "avtoquatro.h"
 #include <avto.h>
 
-avtoquatro::avtoquatro(float inmass) : avtopilot(inmass) {
+avtoquatro::avtoquatro(float inmass) : avtopilot() {
   P_pitch = 0;
   D_pitch = 0;
   P_roll = 0;
